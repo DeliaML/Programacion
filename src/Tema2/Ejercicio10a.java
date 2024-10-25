@@ -2,7 +2,7 @@ package Tema2;
 
 import java.util.Scanner;
 
-public class Ejercicio10 {
+public class Ejercicio10a {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("Damé 3 números");

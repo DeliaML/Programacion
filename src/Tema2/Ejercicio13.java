@@ -12,9 +12,10 @@ public class Ejercicio13 {
         int Minutes = in.nextInt();
         System.out.println("Dame los segundos ");
         int Seconds = in.nextInt();
-        if (Minutes >= 60 || Seconds >= 60) {
+        if (Minutes >= 60 || Seconds >= 60 || Hours >= 24) {
             Minutes ++;
             Seconds ++;
+            Hours ++;
         }
         Seconds ++;
         if (Seconds == 60) {
@@ -25,7 +26,10 @@ public class Ejercicio13 {
             Hours ++;
             Minutes = 0;
         }
-        if (Minutes > 60 || Seconds > 60) {
+        if (Hours == 24) {
+            Hours = 0;
+        }
+        if (Minutes > 60 || Seconds > 60 || Hours > 24) {
             System.out.println("La fecha es invalida ");
         } else {
             System.out.println("Son las " + Hours + " Horas " + Minutes + " Minutos " + Seconds + " Segundos");
