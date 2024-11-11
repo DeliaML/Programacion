@@ -14,6 +14,7 @@ public class Ejercicio25 {
         } else if (num == 1) {
             System.out.println("El factorial de 1 es 1");
         } else {
+            //for
             while (cont > 0) {
                 fact = cont * fact;
                 cont --;
