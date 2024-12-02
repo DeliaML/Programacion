@@ -3,12 +3,14 @@ import java.util.Scanner;
 public class Ejercicio7 {
 
     public static void isPrimo(int primo) {
-
+        //revisa. usa booleanos
         int cond = 0;
         int cont = primo;
+
         while (cont > 0) {
             if (primo % cont == 0) {
                 cond++;
+
             }
             cont--;
         }

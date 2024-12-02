@@ -4,7 +4,7 @@ public class Ejercicio3 {
 
     public static boolean validRadius(double num) {
 
-        if (num < 0) {
+        if (num <= 0) {
             return false;
         } else {
             return true;

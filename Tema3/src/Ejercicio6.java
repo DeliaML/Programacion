@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Ejercicio6 {
-
+//pasar de 10 l´ineas a 1. Usa 2 fors
     public static void isTabla10() {
 
         System.out.println("1 * 1 = 1");

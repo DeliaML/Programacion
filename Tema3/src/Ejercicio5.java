@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Ejercicio5 {
 
     public static void isTabla(int num) {
-
+        //revisar, pasar de 10 líneas a 1
         System.out.println(num + " * " + 1 + " = " + num);
         System.out.println(num + " * " + 2 + " = " + num * 2);
         System.out.println(num + " * " + 3 + " = " + num * 3);
