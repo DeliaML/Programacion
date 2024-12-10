@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Ejercicio7 {
 
-    public static void isPrimo(int primo) {
+    public static boolean isPrimo(int primo) {
         //revisa. usa booleanos
         int cond = 0;
         int cont = primo;
@@ -14,17 +14,7 @@ public class Ejercicio7 {
             }
             cont--;
         }
-        if (primo == 1) {
-            System.out.println(primo + " no es primo");
-        } else if (cond == 2) {
-            System.out.println(primo + " es primo");
-        } else if (cond > 2) {
-            System.out.println(primo + " no es primo");
-        } else if (primo == 0) {
-            System.out.println(primo + " no es primo");
-        } else {
-            System.out.println(primo + " es negativo");
-        }
+        return cond == 2;
     }
 
     public static void main(String[] args) {
@@ -34,7 +24,9 @@ public class Ejercicio7 {
             System.out.println("Pulsa 0 para salir");
             System.out.println("Introduce un número");
             num = in.nextInt();
-            isPrimo(num);
+            boolean res = isPrimo(num);
+            if (res) System.out.println("El número es primo");
+            else System.out.println("El número no es primo");
         }
     }
 }

@@ -126,12 +126,8 @@ public class MyMath {
 //intenar hacer con for
         if (num < 0) return 0;
         if (num == 0 || num == 1) return 1;
-        int cont = 1;
         int fact = num;
-        while (cont < num) {
-            fact = fact * cont;
-            cont ++;
-        }
+        for (int cont = 1; cont < num; cont ++) fact = fact * cont;
         return fact;
     }
 

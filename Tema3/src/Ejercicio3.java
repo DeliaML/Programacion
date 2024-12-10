@@ -4,11 +4,7 @@ public class Ejercicio3 {
 
     public static boolean validRadius(double num) {
 
-        if (num <= 0) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(num <= 0);
     }
 
     public static double calculateCircleArea(double num) {
