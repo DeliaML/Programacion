@@ -33,7 +33,7 @@ public class Mosca {
                     mosca = random.nextInt(16);
                     sitio[mosca] = 1;
                 }
-            } else System.out.println("Hay no estaba la mosca");
+            } else System.out.println("Ahí no estaba la mosca");
         }
     }
 }
