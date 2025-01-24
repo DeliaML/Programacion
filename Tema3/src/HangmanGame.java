@@ -37,8 +37,7 @@ public class HangmanGame {
 
     public static boolean ahorcadoJuego(String a, String b) {
 
-        if (Objects.equals(a, b)) return true;
-        else return false;
+        return Objects.equals(a, b);
     }
 
     public static void ahorcadoPrint(int con) {
