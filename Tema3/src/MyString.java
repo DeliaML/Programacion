@@ -103,26 +103,100 @@ public class MyString {
     public static void main(String[] args) {
 
         Scanner in = new Scanner(System.in);
-        System.out.println("Introduce una cadena");
-        String a = in.nextLine();
-        System.out.println("Introduce otra cadena");
-        String c = in.nextLine();
-        char[] r = new char[12];
-        for (int i = 0; i < r.length - 1; i ++) {
-            System.out.println("Introduce un número");
-            r[i] = in.next().charAt(0);
-            while (r[i] == '0' || r[i] == '1' || r[i] == '2'|| r[i] == '3' || r[i] == '4' || r[i] == '5' || r[i] == '6' || r[i] == '7' || r[i] == '8' || r[i] == '9') {
-                i ++;
-            }
-            i --;
-        }
-        String b = invMax(a);
-        System.out.println(b);
-        System.out.println(vocalReturn(a));
-        System.out.println(Arrays.toString(a.split(" ")));
-        System.out.println(maxWord(a));
-        System.out.println(stringRepeat(a, c));
-        System.out.println(numTelefono(r));
 
+        String trash;
+        System.out.println("Introduce el número de la actividad que quieres");
+        System.out.println("1. invMax");
+        System.out.println("2. vocalReturn");
+        System.out.println("3. maxWord");
+        System.out.println("4. stringRepeat");
+        System.out.println("5. numWords");
+        System.out.println("6. numTelefono");
+        System.out.println("7. vocalCont");
+        int res = in.nextInt();
+        while (res < 1 || res > 7) {
+            System.out.println("El número tiene que ser del 1 al 7");
+            System.out.println("1. invMax");
+            System.out.println("2. vocalReturn");
+            System.out.println("3. maxWord");
+            System.out.println("4. stringRepeat");
+            System.out.println("5. numWords");
+            System.out.println("6. numTelefono");
+            System.out.println("7. vocalCont");
+            res = in.nextInt();
+        }
+        switch (res) {
+
+            case 1:
+
+                System.out.println("Introduce una cadena");
+                trash = in.nextLine();
+                String cadena1 = in.nextLine();
+                System.out.println("Tu cadena al revés es");
+                System.out.println(invMax(cadena1));
+
+                break;
+
+            case 2:
+
+                System.out.println("Introduce una cadena");
+                trash = in.nextLine();
+                String cadena2 = in.nextLine();
+                System.out.println("La cantidad de vocales que tienes es " + vocalReturn(cadena2));
+
+                break;
+
+            case 3:
+
+                System.out.println("Introduce una cadena");
+                trash = in.nextLine();
+                String cadena3 = in.nextLine();
+                System.out.println("La palabra más larga de tu cadena es " + maxWord(cadena3));
+
+                break;
+
+            case 4:
+
+                System.out.println("Introduce una cadena");
+                trash = in.nextLine();
+                String cadena4 = in.nextLine();
+                System.out.println("Introduce otra cadena");
+                String cadena5 = in.nextLine();
+                System.out.println("La cantidad de veces que se repite la segunda cadena en la primera es " + stringRepeat(cadena4, cadena5));
+
+                break;
+
+            case 5:
+
+                System.out.println("Introduce una cadena");
+                trash = in.nextLine();
+                String cadena6 = in.nextLine();
+                System.out.println("La cantidad de palabras en tu cadena es " + numWords(cadena6));
+
+                break;
+
+            case 6:
+
+                char[] r = new char[12];
+                System.out.println("Introduce un número de teléfono");
+                for (int i = 0; i < r.length - 1; i ++) {
+                    System.out.println("Introduce un número");
+                    r[i] = in.next().charAt(0);
+                    while (r[i] == '0' || r[i] == '1' || r[i] == '2'|| r[i] == '3' || r[i] == '4' || r[i] == '5' || r[i] == '6' || r[i] == '7' || r[i] == '8' || r[i] == '9') {
+                        i ++;
+                    }
+                    i --;
+                }
+                System.out.println("Tu número de teléfono es " + numTelefono(r));
+
+                break;
+
+            case 7:
+
+                System.out.println("Introduce una cadena");
+                trash = in.nextLine();
+                String cadena7 = in.nextLine();
+                vocalCont(cadena7);
+        }
     }
 }
