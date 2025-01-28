@@ -20,12 +20,8 @@ public class Reloj {
 
     public void setHours(int hours) {
 
-        if (pm) {
-            if (hours < 12 && hours >= 0) {
-                this.hours = hours;
-            } else {
-                this.hours = hours - 12;
-            }
+        if (hours < 24 && hours >= 0) {
+            this.hours = hours;
         }
     }
 
@@ -55,11 +51,17 @@ public class Reloj {
         }
     }
 
+    public static boolean isPm(int am) {
+
+        if (am == 0) return true;
+        else return false;
+    }
+
     public int getHours() {
         return hours;
     }
 
-    public boolean isPm() {
+    public boolean getPm() {
         return pm;
     }
 
@@ -72,9 +74,9 @@ public class Reloj {
     }
 
     public void setPm(boolean pm) {
-        if (am == 0) this.pm = true;
 
-        this.pm = false;
+
+        this.pm = pm;
     }
 
     @Override

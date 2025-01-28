@@ -11,11 +11,11 @@ public class PersonaMain {
         Persona persona1 = new Persona(" ", " ", " ", 1);
         Persona persona2 = new Persona(" ", " ", " ", 1);
 
-        System.out.println("Introduce los datos de la primera persona");
+        /*System.out.println("Introduce los datos de la primera persona");
         System.out.println("Introduce el nombre");
         persona1.setNombre(in.nextLine());
         System.out.println("Introduce los apellidos");
-        persona1.apellidos = in.nextLine();
+        persona1.setApellidos(in.nextLine());
         System.out.println("Introduce la edad");
         persona1.edad = in.nextInt();
         String trash = in.nextLine();
@@ -37,6 +37,8 @@ public class PersonaMain {
         dni2 = numDni(dni2);
         persona1.dni = letraDni(dni1);
         persona2.dni = letraDni(dni2);
+        */
+
     }
 
 }

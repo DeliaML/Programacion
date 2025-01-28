@@ -15,8 +15,8 @@ public class RelojMain {
 
         System.out.println("Introduce un 0 si quieres sistema de 24 horas o cualquier otro número para sistema de 12");
         int am = in.nextInt();
-        if (am == 0) pm = true;
-        else pm = false;
+        if (am == 0) pm = false;
+        else pm = true;
         reloj1.setPm(pm);
         System.out.println("Introduce la hora");
         reloj1.setHours(in.nextInt());
@@ -24,6 +24,6 @@ public class RelojMain {
         reloj1.setMinutes(in.nextInt());
         System.out.println("Introduce los segundos");
         reloj1.setSeconds(in.nextInt());
-        System.out.println(" ");
+        Reloj.darHora(reloj1.getPm(), reloj1.getHours(), reloj1.getMinutes(),reloj1.getSeconds());
     }
 }
