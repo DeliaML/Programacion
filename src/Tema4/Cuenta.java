@@ -38,13 +38,19 @@ public class Cuenta {
         System.out.println("Tienes " + money + " de dinero en tu cuenta");
     }
 
-    public int recibirAbono(int money, int bonus) {
+    public void recibirAbono(int bonus) {
 
-        return money + bonus;
+        money += bonus;
     }
 
-    public int reciboPagar(int money, int bill) {
+    public void reciboPagar(int bill) {
 
-        return money - bill;
+        money -= bill;
+    }
+
+    public void transferenciaCuenta(Cuenta sum, int res) {
+
+        reciboPagar(res);
+        sum.recibirAbono(res);
     }
 }

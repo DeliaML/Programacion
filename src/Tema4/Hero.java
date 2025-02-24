@@ -69,7 +69,7 @@ public class Hero {
     }
 
     public void setHealth(int health) {
-        if (health > 0) this.health = health;
+         this.health = health;
     }
 
     public void setMaxHealth(int maxHealth) {

@@ -27,6 +27,7 @@ public class HeroBattle {
             System.out.println("Round: " + horda);
             System.out.println(player);
             Hero[] enemies = new Hero[random.nextInt(3)];
+            int maxcont = enemies.length;
             for (int i = 0; i < enemies.length; i++) {
                 enemies[i] = new Hero("Enemy " + (i + 1), 1, 15, 15, 1, 5 * horda, 5 * horda);
             }
@@ -47,6 +48,7 @@ public class HeroBattle {
                 enemies[cont].tankHit(player.getAttack(), enemies[cont].getDefense());
                 if (enemies[cont].getHealth() == 0) System.out.println("Enemy " + cont + " died");
                 cont ++;
+                if (cont > maxcont - 1) cont = 0;
                 rest = random.nextInt(100);
                 if (rest == 0) {
                     player.rest();

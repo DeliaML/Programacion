@@ -39,17 +39,6 @@ public class Persona {
         this.nombre = nombre;
     }
 
-    public static int numDni(int num) {
-
-        Scanner in = new Scanner(System.in);
-
-        while (num % 10 != 8) {
-            System.out.println("Introduce unicamente los 8 números del dni");
-            num = in.nextInt();
-        }
-        return num;
-    }
-
     public static String letraDni(int num) {
 
         String dnil = "";
