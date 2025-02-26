@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Gimnasio {
 
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner in = new Scanner(System.in);
         Map<Integer, Usuario> users = new HashMap<>();
         System.out.println("Introduce cuantos usuarios seran el maximo");

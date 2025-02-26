@@ -10,9 +10,9 @@ public class Usuario {
         this.nombre = "A";
         this.edad = 18;
     }
-    Usuario(String nombre, int edad) {
+    Usuario(String nombre, int edad) throws Exception {
         this.nombre = nombre;
-        this.edad = edad;
+        setEdad(edad);
     }
 
 
@@ -31,8 +31,11 @@ public class Usuario {
     }
 
 
-    public void setEdad(int edad) {
-        if (edad >= 0) this.edad = edad;
+    public void setEdad(int edad) throws Exception {
+
+        if (edad >= 0)
+        {this.edad = edad;}
+        else {throw new Exception("No se puede poner edad negativa");}
     }
 
 
