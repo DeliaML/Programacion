@@ -1,0 +1,38 @@
+package Tema8;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class Ejercicio17 {
+
+    private static final String DB_URL = "jdbc:postgresql://ad-postgres.ctolu9imuhd9.us-east-1.rds.amazonaws.com:5432/hogwarts";
+    private static final String DB_USER = "postgres";
+    private static final String DB_PASSWORD = "Febrero2022";
+
+    public static void main(String[] args) {
+        System.out.println("Conectando a la base de datos...");
+
+        try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            System.out.println("Conexión exitosa.");
+
+            Statement stmt = connection.createStatement();
+
+            String sql = "SELECT e.nombre AS name FROM Estudiante AS e JOIN Estudiante_Asignatura AS ea ON e.id_estudiante = ea.id_estudiante JOIN Asignatura AS a ON ea.id_asignatura = a.id_asignatura WHERE a.nombre = 'Encantamientos' AND ea.calificacion > ( SELECT AVG(ea2.calificacion) FROM Estudiante_Asignatura AS ea2 JOIN Asignatura AS a2 ON ea2.id_asignatura = a2.id_asignatura WHERE a2.nombre = 'Encantamientos');";
+            ResultSet rs = stmt.executeQuery(sql);
+
+            while (rs.next()) {
+                String nombre = rs.getString("name");
+                System.out.println("- " + nombre);
+            }
+
+            rs.close();
+            stmt.close();
+        } catch (SQLException e) {
+            System.err.println("Error al conectar o consultar: " + e.getMessage());
+        }
+    }
+}
+
