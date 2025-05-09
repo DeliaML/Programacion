@@ -20,13 +20,13 @@ public class Ejercicio4 {
 
             Statement stmt = connection.createStatement();
 
-            String sql = "SELECT nombre, apellido FROM Estudiante WHERE fecha_nacimiento > '1980-01-01';";
+            String sql = "SELECT c.nombre, COUNT(id_estudiante) AS num_estudiantes FROM Casa AS c JOIN Estudiante AS e ON c.id_casa = e.id_casa GROUP BY c.nombre;";
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
-                String nombre = rs.getString("nombre");
-                String apellido = rs.getString("apellido");
-                System.out.println("- " + nombre + " " + apellido);
+                String casa = rs.getString("nombre");
+                int numeroestudiante = rs.getInt("num_estudiantes");
+                System.out.println("- " + casa + " " + numeroestudiante);
             }
 
             rs.close();
