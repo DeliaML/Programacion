@@ -3,7 +3,6 @@ package Tema8;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class PilotosCRUD {
@@ -12,14 +11,19 @@ public class PilotosCRUD {
     private static final String DB_USER = "postgres";
     private static final String DB_PASSWORD = "Febrero2022";
 
+    //añade un objeto piloto a la base de datos
     public static void createPilot(Piloto piloto) {
+        Scanner in = new Scanner(System.in);
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             System.out.println("Conexión exitosa.");
 
             Statement stmt = connection.createStatement();
 
-            String sql = "INSERT INTO drivers (code, forename, surname, dob, nationality, constructorid, url) VALUES '" + piloto.getCode() + "', '" + piloto.getForename() + "', '" + piloto.getSurname() + "', '" + piloto.getDob() + "', '" + piloto.getNationality() + "', '" + piloto.getUrl() + "';";
+            System.out.println("Introduce la id del grupo");
+            int id = in.nextInt();
+
+            String sql = "INSERT INTO drivers (code, forename, surname, dob, nationality, constructorid, url) VALUES ('" + piloto.getCode() + "', '" + piloto.getForename() + "', '" + piloto.getSurname() + "', '" + piloto.getDob() + "', '" + piloto.getNationality() + "', " + id + ", '" + piloto.getUrl() + "');";
             stmt.executeQuery(sql);
 
             stmt.close();
@@ -28,6 +32,7 @@ public class PilotosCRUD {
         }
     }
 
+    //lee un piloto a través de su id
     public static Piloto readPiloto(int id) {
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
@@ -57,9 +62,10 @@ public class PilotosCRUD {
         return new Piloto(1, " ", " ", " ", " ", " ", " ");
     }
 
+    //devuelve la lista entera de pilotos de la base de datos
     public static List<Piloto> readPilots() {
 
-        List<Piloto> piloto =  new ArrayList<>();
+        List<Piloto> piloto = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             System.out.println("Conexión exitosa.");
@@ -78,7 +84,6 @@ public class PilotosCRUD {
                 String nationality = rs.getString("nationality");
                 String url = rs.getString("url");
                 piloto.add(new Piloto(id, code, forename, surname, dob, nationality, url));
-                return piloto;
             }
 
             rs.close();
@@ -89,6 +94,7 @@ public class PilotosCRUD {
         return piloto;
     }
 
+    //actualiza los cambios hechos a un objeto piloto a la base de datos
     public static void updatePilot(Piloto piloto) {
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
@@ -96,7 +102,7 @@ public class PilotosCRUD {
 
             Statement stmt = connection.createStatement();
 
-            String sql = "UPDATE drivers SET code = '" + piloto.getCode() + "' forename = '" + piloto.getForename() + "' surname = '" + piloto.getSurname() + "' dob = '" + piloto.getDob() + "' nationality = '" + piloto.getNationality() + "' url = '" + piloto.getUrl() + "' WHERE driverid = " + piloto.getDriverid() + ";";
+            String sql = "UPDATE drivers SET code = '" + piloto.getCode() + "', forename = '" + piloto.getForename() + "', surname = '" + piloto.getSurname() + "', dob = '" + piloto.getDob() + "', nationality = '" + piloto.getNationality() + "', url = '" + piloto.getUrl() + "' WHERE driverid = " + piloto.getDriverid() + ";";
             stmt.executeQuery(sql);
 
             stmt.close();
@@ -105,6 +111,7 @@ public class PilotosCRUD {
         }
     }
 
+    //borra un piloto de la base de datos
     public static void deletePilot(Piloto piloto) {
 
         try (Connection connection = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
@@ -189,6 +196,7 @@ public class PilotosCRUD {
             System.out.println("7. ShowBuildersClassification");
             System.out.println("0. Salir");
             opcion = in.nextInt();
+            String trash = in.nextLine();
 
             switch (opcion) {
 
@@ -198,31 +206,77 @@ public class PilotosCRUD {
 
                 case 1:
 
+                    int id = 1;
+                    System.out.println("Introduce el código del piloto");
+                    String code = in.nextLine();
+                    System.out.println("Introduce el nombre del piloto");
+                    String forename = in.nextLine();
+                    System.out.println("Introduce el apellido del piloto");
+                    String surname = in.nextLine();
+                    System.out.println("Introduce la fecha de nacimiento del piloto");
+                    String dob = in.nextLine();
+                    System.out.println("Introduce la nacionalidad del piloto");
+                    String nationality = in.nextLine();
+                    System.out.println("Introduce la web del piloto");
+                    String url = in.nextLine();
+                    //para que no se repita la clave driverid
+                    for (int i = 0; i < piloto.size(); i ++) {
+                        if (id == piloto.get(i).getDriverid()) id = piloto.get(i).getDriverid() + 1;
+                    }
+                    createPilot(new Piloto(id, code, forename, surname, dob, nationality, url));
+
 
 
                     break;
 
                 case 2:
 
+                    for (int i = 0; i < piloto.size(); i++) {
+                        System.out.println(piloto.get(i).getForename() + " " + piloto.get(i).getSurname() + " id = " + piloto.get(i).getDriverid());
+                    }
+                    System.out.println("Introduce la id del piloto a buscar");
+                    piloto.add(readPiloto(in.nextInt()));
+
                     break;
 
                 case 3:
+
+                    piloto = readPilots();
 
                     break;
 
                 case 4:
 
+                    for (int i = 0; i < piloto.size(); i ++) {
+                        System.out.println("posición " + i + ": " + piloto.get(i).getForename() + " " + piloto.get(i).getSurname());
+                    }
+                    System.out.println("Introduce la posicion del piloto a actualizar");
+                    int update = in.nextInt();
+                    //para comprobar que actualiza correctamente
+                    piloto.get(update).setForename("xd");
+                    updatePilot(piloto.get(update));
+
                     break;
 
                 case 5:
+
+                    for (int i = 0; i < piloto.size(); i ++) {
+                        System.out.println("posición " + i + ": " + piloto.get(i).getForename() + " " + piloto.get(i).getSurname());
+                    }
+                    System.out.println("Introduce la posicion del piloto a borrar");
+                    deletePilot(piloto.get(in.nextInt()));
 
                     break;
 
                 case 6:
 
+                    showPilotClassification();
+
                     break;
 
                 case 7:
+
+                    showBuildersClassification();
 
                     break;
 
